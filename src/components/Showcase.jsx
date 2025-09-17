@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LinkedInEmbed from './LinkedInEmbed.jsx';
 import './Showcase.css';
+
+
 
 const Showcase = () => {
   const [activeSection, setActiveSection] = useState('what-if');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const sections = [
@@ -25,12 +27,14 @@ const Showcase = () => {
               <div className="post-item">
                 <h3>What if Nanda kumar active in linkedin</h3>
                 <div className="linkedin-embed">
-                  <LinkedInEmbed 
+                  <iframe 
                     src="https://www.linkedin.com/embed/feed/update/urn:li:share:7365599830192115713"
-                    title="What if Nanda kumar active in linkedin"
                     width="504"
                     height="1500"
-                  />
+                    frameBorder="0"
+                    allowFullScreen
+                    title="What if Nanda kumar active in linkedin"
+                  ></iframe>
                 </div>
               </div>
               <div className="post-item">
@@ -42,7 +46,7 @@ const Showcase = () => {
                     height="1927"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="What if RJ Balaji on linkedin"
                   ></iframe>
                 </div>
               </div>
@@ -63,7 +67,7 @@ const Showcase = () => {
                     height="1627"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="System Thinking - ft.Epaphra"
                   ></iframe>
                 </div>
               </div>
@@ -76,7 +80,7 @@ const Showcase = () => {
                     height="1250"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="Repetitive marketing - V1"
                   ></iframe>
                 </div>
               </div>
@@ -89,7 +93,7 @@ const Showcase = () => {
                     height="1160"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="Repetitive marketing - V2"
                   ></iframe>
                 </div>
               </div>
@@ -102,7 +106,7 @@ const Showcase = () => {
                     height="1113"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="Case Study - How A2D Channel, Nanda Kumar cracked yt algorithm"
                   ></iframe>
                 </div>
               </div>
@@ -115,7 +119,7 @@ const Showcase = () => {
                     height="1578"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="Branding"
                   ></iframe>
                 </div>
               </div>
@@ -136,7 +140,7 @@ const Showcase = () => {
                     height="1617"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="How to write some better posts. Ft. Thiruvalluvar"
                   ></iframe>
                 </div>
               </div>
@@ -149,7 +153,7 @@ const Showcase = () => {
                     height="2160"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="How I joined Nuke marketing"
                   ></iframe>
                 </div>
               </div>
@@ -162,7 +166,7 @@ const Showcase = () => {
                     height="1131"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="Personal Story"
                   ></iframe>
                 </div>
               </div>
@@ -183,7 +187,7 @@ const Showcase = () => {
                     height="656"
                     frameBorder="0"
                     allowFullScreen
-                    title="Embedded post"
+                    title="GenAI introduction"
                   ></iframe>
                 </div>
               </div>
@@ -261,7 +265,7 @@ const Showcase = () => {
 
   return (
     <div className="showcase">
-      <aside className="sidebar">
+      <aside className={`sidebar ${isMobileMenuOpen ? 'sidebar-open' : ''}`}>
         <header className="showcase-header">
           <button className="back-button" onClick={() => navigate('/')}>
             ← Back to Home
@@ -275,7 +279,10 @@ const Showcase = () => {
               <button
                 key={section.id}
                 className={`nav-button ${activeSection === section.id ? 'active' : ''}`}
-                onClick={() => setActiveSection(section.id)}
+                onClick={() => {
+                  setActiveSection(section.id);
+                  setIsMobileMenuOpen(false); // Close menu after selection on mobile
+                }}
               >
                 {section.label}
               </button>
@@ -283,6 +290,24 @@ const Showcase = () => {
           </div>
         </nav>
       </aside>
+
+      {/* Mobile hamburger button */}
+      <button 
+        className="mobile-menu-toggle"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      {/* Mobile overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="mobile-overlay" 
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+      )}
 
       <main className="showcase-content">
         {renderContent()}
