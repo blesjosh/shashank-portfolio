@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LinkedInEmbed from './LinkedInEmbed.jsx';
 import './Showcase.css';
 
 const Showcase = () => {
@@ -24,14 +25,12 @@ const Showcase = () => {
               <div className="post-item">
                 <h3>What if Nanda kumar active in linkedin</h3>
                 <div className="linkedin-embed">
-                  <iframe 
+                  <LinkedInEmbed 
                     src="https://www.linkedin.com/embed/feed/update/urn:li:share:7365599830192115713"
+                    title="What if Nanda kumar active in linkedin"
                     width="504"
                     height="1500"
-                    frameBorder="0"
-                    allowFullScreen
-                    title="Embedded post"
-                  ></iframe>
+                  />
                 </div>
               </div>
               <div className="post-item">

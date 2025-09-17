@@ -1,0 +1,4 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src 'self' https://www.linkedin.com https://linkedin.com *.linkedin.com; img-src 'self' data: https:; connect-src 'self' https:;
+  Referrer-Policy: strict-origin-when-cross-origin
